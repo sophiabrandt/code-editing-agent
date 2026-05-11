@@ -1,0 +1,36 @@
+# Binary
+code-agent
+code-agent.exe
+
+# Build output
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test
+*.test
+*.out
+coverage.out
+
+# Go
+vendor/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env (don't commit API keys)
+.env
+.env.local
+
+# ctags
+tags
