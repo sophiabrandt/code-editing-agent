@@ -2,6 +2,7 @@ package app
 
 import (
 	"bufio"
+	"encoding/json"
 	"flag"
 	"fmt"
 	"net/http"
@@ -21,6 +22,7 @@ func CLI(args []string, version, commit string) int {
 		}
 		return 1
 	}
+	app.registerDefaultTools()
 	if err := app.run(); err != nil {
 		fmt.Fprintf(os.Stderr, "Error: %v\n", err)
 		return 2
@@ -36,6 +38,7 @@ type appEnv struct {
 	systemMsg  string
 	version    string
 	commit     string
+	tools      []ToolDefinition
 }
 
 func (app *appEnv) fromArgs(args []string, version, commit string) error {
@@ -74,6 +77,19 @@ func (app *appEnv) fromArgs(args []string, version, commit string) error {
 	}
 
 	return nil
+}
+
+func (app *appEnv) RegisterTool(name, description string, inputSchema json.RawMessage, fn func(input json.RawMessage) (string, error)) {
+	app.tools = append(app.tools, ToolDefinition{
+		Name:        name,
+		Description: description,
+		InputSchema: inputSchema,
+		Function:    fn,
+	})
+}
+
+func (app *appEnv) registerDefaultTools() {
+	app.RegisterTool(ReadFileDefinition.Name, ReadFileDefinition.Description, ReadFileDefinition.InputSchema, ReadFileDefinition.Function)
 }
 
 func (app *appEnv) run() error {
