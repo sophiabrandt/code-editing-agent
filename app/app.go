@@ -49,7 +49,7 @@ func (app *appEnv) fromArgs(args []string, version, commit string) error {
 	fl := flag.NewFlagSet("code-agent", flag.ContinueOnError)
 	fl.StringVar(&app.apiKey, "key", "", "API key (or set CODE_AGENT_API_KEY env var)")
 	fl.StringVar(&app.model, "model", "openai/gpt-oss-20b", "model to use")
-	fl.StringVar(&app.baseURL, "url", "https://openrouter.ai/api/v1", "OpenAI-compatible API base URL")
+	fl.StringVar(&app.baseURL, "url", "https://openrouter.ai/api/v1", "OpenRouter-compatible API base URL")
 	fl.StringVar(&app.systemMsg, "system", "You are a helpful coding assistant. Reply concisely.", "system prompt")
 	fl.DurationVar(&app.hc.Timeout, "t", 120*time.Second, "request timeout")
 
@@ -90,6 +90,7 @@ func (app *appEnv) RegisterTool(name, description string, inputSchema json.RawMe
 
 func (app *appEnv) registerDefaultTools() {
 	app.RegisterTool(ReadFileDefinition.Name, ReadFileDefinition.Description, ReadFileDefinition.InputSchema, ReadFileDefinition.Function)
+	app.RegisterTool(ListFilesDefinition.Name, ListFilesDefinition.Description, ListFilesDefinition.InputSchema, ListFilesDefinition.Function)
 }
 
 func (app *appEnv) run() error {
