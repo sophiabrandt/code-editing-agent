@@ -172,7 +172,7 @@ func (app *appEnv) executeTool(call ToolCall) (result struct {
 				return struct {
 					Content string
 					Error   error
-				}{Error: err}
+				}{Error: fmt.Errorf("tool %s execution failed: %w", tool.Name, err)}
 			}
 			return struct {
 				Content string
