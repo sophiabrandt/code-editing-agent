@@ -2,7 +2,11 @@
 
 **This is an AI-coded clanker harness that follows the [guide on how to build an agent by Thorsten Ball](https://ampcode.com/notes/how-to-build-an-agent).**
 
-A simple interactive coding agent that talks to any OpenAI-compatible API (OpenRouter, Ollama, OpenAI, etc.).
+A simple interactive coding agent that _potentially_ talks to any OpenAI-compatible API (OpenRouter, Ollama, OpenAI, etc.).
+
+No use of the [OpenAI Go SDK](https://github.com/openai/openai-go) as I couldn't get it to compile on my VM. The repo shows a plain HTTP-only approach and is thus very limited.
+
+I tested it with OpenRouter:"qwen/qwen3.5-9b". Models like "meta-llama/llama-3.1-8b-instruct" don't seem to work. 
 
 ## Build
 
@@ -40,7 +44,7 @@ The agent starts an interactive chat session. Type a message and press Enter. Ty
 ### OpenRouter (default)
 
 ```bash
-export CODE_AGENT_API_KEY=sk-or-...
+export OPENROUTER_API_KEY=sk-or-...
 ./code-agent
 ```
 
