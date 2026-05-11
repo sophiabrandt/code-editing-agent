@@ -1,4 +1,4 @@
-# code-agent
+# code-editing-agent
 
 **This is an AI-coded clanker harness that follows the [guide on how to build an agent by Thorsten Ball](https://ampcode.com/notes/how-to-build-an-agent).**
 
