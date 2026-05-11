@@ -80,6 +80,14 @@ echo "Write a Go function to reverse a string" | ./code-agent
 | 1 | User error (bad flags, missing API key) |
 | 2 | Runtime error (network, API failure) |
 
+## Tools
+
+| Tool | Description |
+|------|-------------|
+| `list_files` | List files and directories at a given path. If no path is provided, lists files in the current directory. |
+| `edit_file` | Make edits to a text file. Replaces 'old_str' with 'new_str' in the given file. 'old_str' and 'new_str' MUST be different from each other. If the file specified with path doesn't exist, it will be created. |
+| `read_file` | Read the content of a file. |
+
 ## Project Structure
 
 ```
@@ -87,5 +95,9 @@ main.go          # Entry point: os.Exit(app.CLI(...))
 app/
   app.go         # CLI entry, flag parsing, conversation loop
   api.go         # OpenAI-compatible types, HTTP completion helper
+  edit_file.go   # Tool for editing files
+  edit_file_test.go # Tests for the edit_file tool
+  list_files.go  # Tool for listing files in a directory
+  read_file.go   # Tool for reading file content
 go.mod
 ```
