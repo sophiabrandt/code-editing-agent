@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 
-	"github.com/sophiabrandt/code-editing-agent/app"
+	"github.com/sophiabrandt/code-editing-agent/agent"
 )
 
 var (
@@ -12,5 +12,5 @@ var (
 )
 
 func main() {
-	os.Exit(app.CLI(os.Args[1:], version, commit))
+	os.Exit(agent.CLI(os.Args[1:], version, commit))
 }

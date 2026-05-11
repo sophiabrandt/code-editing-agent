@@ -6,7 +6,7 @@ A simple interactive coding agent that _potentially_ talks to any OpenAI-compati
 
 No use of the [OpenAI Go SDK](https://github.com/openai/openai-go) as I couldn't get it to compile on my VM. The repo shows a plain HTTP-only approach and is thus very limited.
 
-I tested it with OpenRouter:"qwen/qwen3.5-9b". Models like "meta-llama/llama-3.1-8b-instruct" don't seem to work. 
+I tested it with OpenRouter "qwen/qwen3.5-9b". Models like "meta-llama/llama-3.1-8b-instruct" don't seem to work. 
 
 ## Build
 
@@ -91,13 +91,15 @@ echo "Write a Go function to reverse a string" | ./code-agent
 ## Project Structure
 
 ```
-main.go          # Entry point: os.Exit(app.CLI(...))
-app/
-  app.go         # CLI entry, flag parsing, conversation loop
+main.go          # Entry point: os.Exit(agent.CLI(...))
+agent/
+  agent.go       # CLI entry, flag parsing, conversation loop
   api.go         # OpenAI-compatible types, HTTP completion helper
   edit_file.go   # Tool for editing files
   edit_file_test.go # Tests for the edit_file tool
   list_files.go  # Tool for listing files in a directory
+  list_files_test.go # Tests for the list_files tool
   read_file.go   # Tool for reading file content
+  read_file_test.go # Tests for the read_file tool
 go.mod
 ```
